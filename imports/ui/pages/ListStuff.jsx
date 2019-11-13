@@ -18,13 +18,20 @@ class ListStuff extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">List Stuff</Header>
+          <Header as="h2" textAlign="center">Lista de películas</Header>
           <Table celled>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Quantity</Table.HeaderCell>
-                <Table.HeaderCell>Condition</Table.HeaderCell>
+                <Table.HeaderCell>Titulo</Table.HeaderCell>
+                <Table.HeaderCell>Año Estreno</Table.HeaderCell>
+                <Table.HeaderCell>Género</Table.HeaderCell>
+                <Table.HeaderCell>Duración</Table.HeaderCell>
+                <Table.HeaderCell>Calificación</Table.HeaderCell>
+                <Table.HeaderCell>Poster</Table.HeaderCell>
+                <Table.HeaderCell>Actores Principales</Table.HeaderCell>
+                <Table.HeaderCell>Sinopsis</Table.HeaderCell>
+                <Table.HeaderCell>Reseña</Table.HeaderCell>
+                <Table.HeaderCell>Director</Table.HeaderCell>
                 <Table.HeaderCell>Edit</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
