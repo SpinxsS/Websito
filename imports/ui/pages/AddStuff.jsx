@@ -23,14 +23,29 @@ const formSchema = new SimpleSchema({
   },
 });
 
+
+const peliculaEsquema = new SimpleSchema({
+ 
+  titulo: String,
+  anoEstreno: Number,
+  genero: String,
+  duracion: Number,
+  calificacion: Number,
+  poster:String,
+  actoresPrincipales:String,
+  sinopsis: String,
+  resena:String,
+  director: String,
+ });
+
 /** Renders the Page for adding a document. */
 class AddStuff extends React.Component {
 
   /** On submit, insert the data. */
   submit(data, formRef) {
-    const { name, quantity, condition } = data;
+    const { titulo, anoEstreno, genero, duracion, calificacion, poster, actoresPrincipales, sinopsis, resena, director   } = data;
     const owner = Meteor.user().username;
-    Stuffs.insert({ name, quantity, condition, owner },
+    Stuffs.insert({ titulo, anoEstreno, genero, duracion, calificacion, poster, actoresPrincipales, sinopsis, resena, director, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -48,11 +63,18 @@ class AddStuff extends React.Component {
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center">Add Stuff</Header>
-            <AutoForm ref={ref => { fRef = ref; }} schema={formSchema} onSubmit={data => this.submit(data, fRef)} >
+            <AutoForm ref={ref => { fRef = ref; }} schema={peliculaEsquema} onSubmit={data => this.submit(data, fRef)} >
               <Segment>
-                <TextField name='name'/>
-                <NumField name='quantity' decimal={false}/>
-                <SelectField name='condition'/>
+                <TextField name='titulo'/>
+                <NumField name='anoEstreno' decimal={false}/>
+                <TextField name='genero'/>
+                <NumField name='duracion' decimal={false}/>
+                <NumField name='calificacion' decimal={true}/>
+                <TextField name='poster'/>
+                <TextField name='actoresPrincipales'/>
+                <TextField name='sinopsis'/>
+                <TextField name='resena'/>
+                <TextField name='director'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
               </Segment>

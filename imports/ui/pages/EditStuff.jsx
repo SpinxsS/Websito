@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
-import { Stuffs, StuffSchema } from '/imports/api/stuff/Stuff';
+import { Stuffs, peliculaEsquema } from '/imports/api/stuff/Stuff';
 import swal from 'sweetalert';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
@@ -19,8 +19,8 @@ class EditStuff extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { name, quantity, condition, _id } = data;
-    Stuffs.update(_id, { $set: { name, quantity, condition } }, (error) => (error ?
+    const { titulo, anoEstreno, genero, duracion, calificacion, poster, actoresPrincipales, sinopsis, resena, director, _id } = data;
+    Stuffs.update(_id, { $set: { titulo, anoEstreno, genero, duracion, calificacion, poster, actoresPrincipales, sinopsis, resena, director } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
   }
@@ -36,11 +36,18 @@ class EditStuff extends React.Component {
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center">Edit Stuff</Header>
-            <AutoForm schema={StuffSchema} onSubmit={data => this.submit(data)} model={this.props.doc}>
+            <AutoForm schema={peliculaEsquema} onSubmit={data => this.submit(data)} model={this.props.doc}>
               <Segment>
-                <TextField name='name'/>
-                <NumField name='quantity' decimal={false}/>
-                <SelectField name='condition'/>
+              <TextField name='titulo'/>
+                <NumField name='anoEstreno' decimal={false}/>
+                <TextField name='genero'/>
+                <NumField name='duracion' decimal={false}/>
+                <NumField name='calificacion' decimal={true}/>
+                <TextField name='poster'/>
+                <TextField name='actoresPrincipales'/>
+                <TextField name='sinopsis'/>
+                <TextField name='resena'/>
+                <TextField name='director'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' />
